@@ -1,12 +1,28 @@
 import React from 'react';
+import { useTable } from 'react-table'
 
-// Стили
-import './table.css';
+// Компоненты
+import HeaderComponent from './Header';
+import BodyComponent from './Body';
 
-export default function Table() {
+export default function TableComponent(props: any): any {
+  const { columns, data } = props;
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data
+  })
+
   return (
-    <div className="wrapper-table">
-      <div className="content">1</div>
-    </div>
+    <table {...getTableProps()}>
+      <HeaderComponent headerGroups={headerGroups} />
+      <BodyComponent rows={rows} bodyProps={getTableBodyProps} prepareRow={prepareRow} />
+    </table>
   )
 }
