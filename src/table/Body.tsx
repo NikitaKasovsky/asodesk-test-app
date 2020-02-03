@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'react-table';
+import { Row, UseTableRowProps } from 'react-table';
 
 import RowComponent from './Row';
 
@@ -15,7 +15,7 @@ export default function BodyComponent(props: IBodyProps): any {
   return (
     <tbody {...bodyProps()}>
       {rows.map(
-        (row: any, i: number) => {
+        (row: UseTableRowProps<object>, i: number) => {
           prepareRow(row);
           return (<RowComponent key={i} row={row} />)
         }

@@ -18,8 +18,20 @@ export default function ContentComponent(): any {
   // Колонки таблицы
   const columns = [
     {
+      Header: '',
+      accessor: 'checkbox'
+    },
+    {
       Header: 'Keyword',
       accessor: 'keyword',
+    },
+    {
+      Header: '',
+      accessor: 'explore',
+    },
+    {
+      Header: '',
+      accessor: 'show',
     },
     {
       Header: 'Traffic Score',
