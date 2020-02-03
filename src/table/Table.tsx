@@ -4,6 +4,7 @@ import { useTable } from 'react-table'
 // Компоненты
 import HeaderComponent from './Header';
 import BodyComponent from './Body';
+import FooterComponent from './Footer';
 
 export default function TableComponent(props: any): any {
   const { columns, data } = props;
@@ -23,6 +24,7 @@ export default function TableComponent(props: any): any {
     <table {...getTableProps()}>
       <HeaderComponent headerGroups={headerGroups} />
       <BodyComponent rows={rows} bodyProps={getTableBodyProps} prepareRow={prepareRow} />
+      <FooterComponent />
     </table>
   )
 }

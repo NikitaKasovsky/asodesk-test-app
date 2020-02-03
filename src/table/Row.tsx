@@ -27,8 +27,8 @@ export default function RowComponent(props: IRowProps): any {
       {row.cells.map((cell: Cell) => (
         <td {...cell.getCellProps()}>
           {rowGenerator(cell)}
-        </td>)
-      )}
+        </td>
+      ))}
     </tr>
   )
 }

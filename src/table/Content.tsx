@@ -18,7 +18,7 @@ export default function ContentComponent(): any {
   // Колонки таблицы
   const columns = [
     {
-      Header: '',
+      Header: (<input type="checkbox" />),
       accessor: 'checkbox'
     },
     {
