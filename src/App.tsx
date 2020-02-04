@@ -1,33 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Стили
 import './App.css';
 
 // Компоненты
-import ContentComponent from './table/Content';
+import ContentComponent from './components/table/Content';
 
 const AppComponent = (): any => {
-  // Уткнулся в проблему с корсами, решил пока что отложить
-  useEffect(() => {
-    fetch('https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Accept': '*/*',
-        'Cache-Control': 'no-cache',
-        'Host': 'hq.asodesk.com',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Content-Length': '20000',
-        'Connection': 'keep-alive'
-      },
-    })
-      .then(response => response.json())
-      .then(json => console.log(json))
-      .catch(err => console.error(err))
-  }, [])
-
   return (
     <div className="wrapper">
       <div className="header"></div>

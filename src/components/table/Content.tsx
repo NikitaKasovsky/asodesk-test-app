@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Стили
 import './table.css';
@@ -6,7 +6,35 @@ import './table.css';
 // Компоненты
 import Table from './Table';
 
+// Интерфейсы
+import { IDataStats } from '../../interfaces/data-stats.interface';
+
 export default function ContentComponent(): any {
+  const [list, setList] = React.useState()
+
+  // Загружаем список
+  useEffect(() => {
+    fetch('https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Accept': '*/*',
+        'Cache-Control': 'no-cache',
+        'Host': 'hq.asodesk.com',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Length': '20000',
+        'Connection': 'keep-alive'
+      },
+    })
+      .then(response => response.json())
+      .then((data: IDataStats) => {
+        const list = data.data
+        setList(list)
+      })
+      .catch(err => console.error(err))
+  })
 
   // Моки для таблицы
   const mock = [
@@ -54,7 +82,7 @@ export default function ContentComponent(): any {
   return (
     <div className="wrapper-table">
       <div className="content">
-        <Table columns={columns} data={mock} />
+        <Table columns={columns} data={list ? list : []} />
       </div>
     </div>
   )
