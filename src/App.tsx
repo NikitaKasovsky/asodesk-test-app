@@ -1,20 +1,18 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { NavbarComponent } from './components/root/Navbar';
+import { WrapperComponent } from './components/table/Wrapper';
 
-// Стили
-import './App.css';
-
-// Компоненты
-import ContentComponent from './components/table/Content';
-
-const AppComponent = (): any => {
+const AppComponent: React.FC = () => {
   return (
-    <div className="wrapper">
-      <div className="header"></div>
-      <div className="side-nav"></div>
-      <div className="content">
-        <ContentComponent />
+    <BrowserRouter>
+      <NavbarComponent />
+      <div>
+        <Switch>
+          <Route component={WrapperComponent} />
+        </Switch>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

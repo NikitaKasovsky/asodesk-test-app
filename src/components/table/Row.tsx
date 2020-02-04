@@ -2,7 +2,7 @@ import React from 'react';
 import { UseTableRowProps, Cell } from 'react-table';
 
 // Компоненты
-import SuggestionComponent from '../modals/suggestion';
+import SuggestionComponent from '../modals/Suggestion';
 
 interface IRowProps {
   row: UseTableRowProps<object>;
@@ -17,7 +17,7 @@ export default function RowComponent(props: IRowProps): any {
       case 'checkbox':
         return (<input type="checkbox" />)
       case 'explore':
-        return (<button>2</button>)
+        return (<button>explore</button>)
       case 'show':
         return (<SuggestionComponent />)
       default:

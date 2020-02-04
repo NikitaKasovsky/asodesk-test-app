@@ -9,7 +9,7 @@ import Table from './Table';
 // Интерфейсы
 import { IDataStats } from '../../interfaces/data-stats.interface';
 
-export default function ContentComponent(): any {
+export const WrapperComponent: React.FC = () => {
   const [list, setList] = React.useState()
 
   // Загружаем список
@@ -35,13 +35,6 @@ export default function ContentComponent(): any {
       })
       .catch(err => console.error(err))
   })
-
-  // Моки для таблицы
-  const mock = [
-    { id: 1, keyword: 'uber', trafficScore: '12321', rank: '123', totalApps: '412', color: 'red' },
-    { id: 2, keyword: 'auto', trafficScore: '3214', rank: '1', totalApps: '541', color: 'green' },
-    { id: 3, keyword: 'taxi', trafficScore: '12344', rank: '323', totalApps: '12', color: 'blue' }
-  ]
 
   // Колонки таблицы
   const columns = [
@@ -80,9 +73,11 @@ export default function ContentComponent(): any {
   ]
 
   return (
-    <div className="wrapper-table">
-      <div className="content">
-        <Table columns={columns} data={list ? list : []} />
+    <div className="content">
+      <div className="row">
+        <div className="card">
+          <Table columns={columns} data={list ? list : []} />
+        </div>
       </div>
     </div>
   )

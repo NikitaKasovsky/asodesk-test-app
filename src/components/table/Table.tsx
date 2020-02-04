@@ -21,7 +21,7 @@ export default function TableComponent(props: any): any {
   })
 
   return (
-    <table {...getTableProps()}>
+    <table className="striped centered" {...getTableProps()}>
       <HeaderComponent headerGroups={headerGroups} />
       <BodyComponent rows={rows} bodyProps={getTableBodyProps} prepareRow={prepareRow} />
       <FooterComponent />
