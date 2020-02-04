@@ -11,9 +11,9 @@ export default class SuggestionComponent extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <button onClick={() => this.setState({ isOpen: true })}>Open modal</button>
+        <button onClick={() => this.setState({ isOpen: true })}>Show {}</button>
 
-        {this.state.isOpen && <div className="modal">
+        {this.state.isOpen && <div className="modal-shading">
           <div className="modal-container">
             <h1>Test</h1>
             <button onClick={() => this.setState({ isOpen: false })}>Close</button>

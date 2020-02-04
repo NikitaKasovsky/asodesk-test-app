@@ -5,16 +5,24 @@ import './table.css';
 
 // Компоненты
 import Table from './Table';
+import Loader from '../root/Loader';
 
 // Интерфейсы
 import { IDataStats } from '../../interfaces/data-stats.interface';
 
+// Перечисления
+import { TableItem } from '../../enums/table-item.enum';
+
+// Адрес, с которого запрашиваем данные
+const URL = 'https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats'
+
 export const WrapperComponent: React.FC = () => {
-  const [list, setList] = React.useState()
+  const [list, setList] = React.useState();
+  const [loading, setLoading] = React.useState(true);
 
   // Загружаем список
   useEffect(() => {
-    fetch('https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats', {
+    fetch(URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -24,17 +32,18 @@ export const WrapperComponent: React.FC = () => {
         'Cache-Control': 'no-cache',
         'Host': 'hq.asodesk.com',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Content-Length': '20000',
+        'Content-Length': '1000',
         'Connection': 'keep-alive'
       },
     })
       .then(response => response.json())
-      .then((data: IDataStats) => {
-        const list = data.data
-        setList(list)
+      .then((value: IDataStats) => {
+        const list = value.data;
+        setList(list);
+        setLoading(false);
       })
       .catch(err => console.error(err))
-  })
+  }, [])
 
   // Колонки таблицы
   const columns = [
@@ -52,19 +61,19 @@ export const WrapperComponent: React.FC = () => {
     },
     {
       Header: '',
-      accessor: 'show',
+      accessor: TableItem.SuggestionsCount,
     },
     {
       Header: 'Traffic Score',
-      accessor: 'trafficScore',
+      accessor: TableItem.UsersPerDay,
     },
     {
       Header: 'Rank',
-      accessor: 'rank',
+      accessor: TableItem.PositionInfo,
     },
     {
       Header: 'Total Apps',
-      accessor: 'totalApps',
+      accessor: TableItem.TotalApps,
     },
     {
       Header: 'Color',
@@ -73,12 +82,13 @@ export const WrapperComponent: React.FC = () => {
   ]
 
   return (
-    <div className="content">
-      <div className="row">
-        <div className="card">
-          <Table columns={columns} data={list ? list : []} />
-        </div>
-      </div>
-    </div>
+    <React.Fragment>
+      {loading ? <Loader /> :
+        <div className="row">
+          <div className="card">
+            <Table columns={columns} data={list ? list : []} />
+          </div>
+        </div>}
+    </React.Fragment>
   )
 }

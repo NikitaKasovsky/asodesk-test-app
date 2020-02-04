@@ -5,7 +5,7 @@ interface IHeaderProps {
   headerGroups: HeaderGroup[]
 }
 
-export default function HeaderComponent(props: IHeaderProps): any {
+export default function HeaderComponent(props: IHeaderProps): JSX.Element {
   const headerGroups: HeaderGroup[] = props.headerGroups;
 
   return (
