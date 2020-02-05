@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './table.css';
+
 interface IPaginattorProps {
-  canPrev: Function,
-  canNext: Function,
+  canPrev: boolean,
+  canNext: boolean,
   options: any,
   count: number,
   gotoPage: Function,
@@ -27,19 +29,21 @@ export const PaginatorComponent: React.FC<IPaginattorProps> = (props: IPaginatto
   const { pageIndex, pageSize } = state;
 
   return (
-    <div className="pagination">
-      <button onClick={() => gotoPage(0)} disabled={!canPrev}>
-        {'<<'}
-      </button>{' '}
-      <button onClick={() => prev()} disabled={!canPrev}>
-        {'<'}
-      </button>{' '}
-      <button onClick={() => next()} disabled={!canNext}>
-        {'>'}
-      </button>{' '}
-      <button onClick={() => gotoPage(count - 1)} disabled={!canNext}>
-        {'>>'}
-      </button>{' '}
+    <div className="paginator">
+      <div className="paginator-buttons">
+        <button onClick={() => gotoPage(0)} disabled={!canPrev}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => prev()} disabled={!canPrev}>
+          {'<'}
+        </button>{' '}
+        <button onClick={() => next()} disabled={!canNext}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(count - 1)} disabled={!canNext}>
+          {'>>'}
+        </button>{' '}
+      </div>
       <span>
         Page{' '}
         <strong>
@@ -58,12 +62,11 @@ export const PaginatorComponent: React.FC<IPaginattorProps> = (props: IPaginatto
           style={{ width: '100px' }}
         />
       </span>{' '}
-      <select
+      <select className="select-pages"
         value={pageSize}
         onChange={e => {
           size(Number(e.target.value))
-        }}
-      >
+        }}>
         {[10, 20, 30, 40, 50].map(pageSize => (
           <option key={pageSize} value={pageSize}>
             Show {pageSize}

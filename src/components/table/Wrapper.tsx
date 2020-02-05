@@ -48,8 +48,9 @@ export const WrapperComponent: React.FC = () => {
   // Колонки таблицы
   const columns = [
     {
-      Header: (<input type="checkbox" />),
-      accessor: 'checkbox'
+      Header: () => (<input type="checkbox" />),
+      id: 'checkbox',
+      Cell: () => { }
     },
     {
       Header: 'Keyword',

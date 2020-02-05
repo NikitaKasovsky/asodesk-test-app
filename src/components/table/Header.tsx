@@ -1,12 +1,16 @@
 import React from 'react';
 import { HeaderGroup, ColumnInstance } from 'react-table';
+import { GlobalSearchComponent } from './GlobalSearch';
 
 interface IHeaderProps {
-  headerGroups: HeaderGroup[]
+  headerGroups: HeaderGroup[],
+  globalFilter: any,
+  flatColumns: ColumnInstance[],
+  setGlobalFilter: (value: any) => void
 }
 
 export default function HeaderComponent(props: IHeaderProps): JSX.Element {
-  const headerGroups: HeaderGroup[] = props.headerGroups;
+  const { headerGroups, globalFilter, setGlobalFilter, flatColumns } = props;
 
   return (
     <thead>
@@ -17,6 +21,14 @@ export default function HeaderComponent(props: IHeaderProps): JSX.Element {
           ))}
         </tr>
       ))}
+      <tr>
+        <th colSpan={flatColumns.length}>
+          <GlobalSearchComponent
+            globalFilter={globalFilter}
+            setGlobalFilter={setGlobalFilter}
+          />
+        </th>
+      </tr>
     </thead>
   )
 }

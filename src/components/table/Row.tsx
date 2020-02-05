@@ -15,10 +15,11 @@ interface IRowProps {
 export default function RowComponent(props: IRowProps): JSX.Element {
   const { row } = props;
   const history = useHistory();
-  const colors = ['#4287f5', '#f5428d', '#1ab051', '#d5de26', '#d9a01a', '#7e0187'];
+  // const colors = ['#4287f5', '#f5428d', '#1ab051', '#d5de26', '#d9a01a', '#7e0187'];
 
   const rowGenerator = (cell: Cell): any => {
     const value = cell.row.values || null;
+    const suggestionsCount = typeof (value.suggestions_count) === 'number' ? value.suggestions_count : '-'
 
     switch (cell.column.id) {
       case TableItem.Checkbox:
@@ -26,10 +27,8 @@ export default function RowComponent(props: IRowProps): JSX.Element {
       case TableItem.Explore:
         const keyword: string = value.keyword;
         return (<button onClick={() => history.push(`./explore:${keyword.replace(/ /g, '-')}`)}>explore</button>)
-      case TableItem.Show:
-        return (<SuggestionComponent />)
       case TableItem.SuggestionsCount:
-        return typeof (value.suggestions_count) === 'number' ? value.suggestions_count : '-'
+        return (<SuggestionComponent suggestionsCount={suggestionsCount} />)
       case TableItem.PositionInfo:
         return `${value.position_info.position} ${value.position_info.change ? '(' + value.position_info.change + ')' : ''}`
       default:

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTable, usePagination } from 'react-table'
+import { useTable, usePagination, useGlobalFilter } from 'react-table';
 
 // Компоненты
 import HeaderComponent from './Header';
@@ -24,18 +24,25 @@ export default function TableComponent(props: any): JSX.Element {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    setGlobalFilter,
+    flatColumns,
+    state: { pageIndex, pageSize, globalFilter },
   } = useTable({
-    // TODO: Ошибка типов
     initialState: { pageIndex: 0 },
     columns,
     data,
-  }, usePagination)
+    filterTypes: {},
+  }, useGlobalFilter, usePagination)
 
   return (
     <React.Fragment>
       <table className="striped centered" {...getTableProps()}>
-        <HeaderComponent headerGroups={headerGroups} />
+        <HeaderComponent
+          flatColumns={flatColumns}
+          headerGroups={headerGroups}
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
         <BodyComponent page={page} bodyProps={getTableBodyProps} prepareRow={prepareRow} />
         <FooterComponent />
       </table>

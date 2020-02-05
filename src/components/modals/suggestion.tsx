@@ -4,14 +4,14 @@ import React from 'react';
 import './modals.css';
 
 export default class SuggestionComponent extends React.Component {
-  state = {
+  public state = {
     isOpen: false
   }
 
   render() {
     return (
       <React.Fragment>
-        <button onClick={() => this.setState({ isOpen: true })}>Show {}</button>
+        <button onClick={() => this.setState({ isOpen: true })}>Show {this.props.suggestionsCount}</button>
 
         {this.state.isOpen && <div className="modal-shading">
           <div className="modal-container">
