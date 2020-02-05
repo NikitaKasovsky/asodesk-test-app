@@ -23,7 +23,6 @@
 
 .paginator-selectors {
   display: flex;
-  justify-content: end;
   align-items: center;
   height: 35px;
 }

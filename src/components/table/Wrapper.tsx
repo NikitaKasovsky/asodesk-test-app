@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, HeaderProps, CellProps } from 'react-table';
+import { CellProps } from 'react-table';
 
 // Стили
 import './table.css';
@@ -13,6 +13,7 @@ import { IDataStats } from '../../interfaces/data-stats.interface';
 
 // Перечисления
 import { TableItem } from '../../enums/table-item.enum';
+import { CheckboxComponent } from '../shared/checbox';
 
 // Адрес, с которого запрашиваем данные
 const URL = 'https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats';
@@ -71,6 +72,11 @@ export const WrapperComponent: React.FC = () => {
     //   }
     // },
     {
+      id: 'seelction',
+      Header: () => (<CheckboxComponent />),
+      Cell: () => (<CheckboxComponent />)
+    },
+    {
       Header: 'Keyword',
       accessor: TableItem.Keyword,
     },
@@ -103,7 +109,7 @@ export const WrapperComponent: React.FC = () => {
       id: 'delete',
       accessor: () => 'delete',
       Cell: (item: CellProps<any>) => (
-        <i style={{ cursor: 'pointer' }} onClick={() => {
+        <i style={{ cursor: 'pointer', color: 'darkgrey' }} onClick={() => {
           const shoudRemove = confirm('Вы уверены, что хотите удалить элемент?')
           if (shoudRemove) {
             let data = list;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTable, usePagination, useGlobalFilter } from 'react-table';
 
 // Компоненты
@@ -14,8 +14,6 @@ interface TableProps {
 
 export default function TableComponent(props: TableProps): JSX.Element {
   const { columns, data } = props;
-  console.log(data)
-  const [state, setState] = useState();
 
   const {
     getTableProps,
