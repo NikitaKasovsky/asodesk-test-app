@@ -32,7 +32,10 @@ export default function TableComponent(props: any): JSX.Element {
     columns,
     data,
     filterTypes: {},
-  }, useGlobalFilter, usePagination)
+  },
+    useGlobalFilter,
+    usePagination,
+  )
 
   return (
     <React.Fragment>

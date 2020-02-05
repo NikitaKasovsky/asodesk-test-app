@@ -43,36 +43,41 @@ export const PaginatorComponent: React.FC<IPaginattorProps> = (props: IPaginatto
         <button onClick={() => gotoPage(count - 1)} disabled={!canNext}>
           {'>>'}
         </button>{' '}
+
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {options.length}
+          </strong>{' '}
+        </span>
       </div>
-      <span>
-        Page{' '}
-        <strong>
-          {pageIndex + 1} of {options.length}
-        </strong>{' '}
-      </span>
-      <span>
-        | Go to page:{' '}
-        <input
-          type="number"
-          defaultValue={pageIndex + 1}
-          onChange={e => {
-            const page = e.target.value ? Number(e.target.value) - 1 : 0
-            gotoPage(page)
-          }}
-          style={{ width: '100px' }}
-        />
-      </span>{' '}
-      <select className="select-pages"
-        value={pageSize}
-        onChange={e => {
-          size(Number(e.target.value))
-        }}>
-        {[10, 20, 30, 40, 50].map(pageSize => (
-          <option key={pageSize} value={pageSize}>
-            Show {pageSize}
-          </option>
-        ))}
-      </select>
+
+      <div className="paginator-selectors">
+        <span>
+          Go to page:{' '}
+          <input
+            className="input"
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={event => {
+              const page = event.target.value ? Number(event.target.value) - 1 : 0
+              gotoPage(page)
+            }}
+            style={{ width: '100px' }}
+          />
+        </span>{' '}
+        <select className="select-pages"
+          value={pageSize}
+          onChange={event => {
+            size(Number(event.target.value))
+          }}>
+          {[10, 20, 30, 40, 50].map(pageSize => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   )
 }

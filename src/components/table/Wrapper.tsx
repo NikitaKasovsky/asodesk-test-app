@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Row, HeaderProps, CellProps } from 'react-table';
 
 // Стили
 import './table.css';
@@ -9,11 +10,9 @@ import Loader from '../root/Loader';
 
 // Интерфейсы
 import { IDataStats } from '../../interfaces/data-stats.interface';
-import { Row } from 'react-table';
 
 // Перечисления
 import { TableItem } from '../../enums/table-item.enum';
-import { CheckboxComponent } from '../shared/checbox';
 
 // Адрес, с которого запрашиваем данные
 const URL = 'https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats';
@@ -52,11 +51,26 @@ export const WrapperComponent: React.FC = () => {
 
   // Колонки таблицы
   const columns = [
-    {
-      Header: () => (<CheckboxComponent />),
-      id: 'checkbox',
-      Cell: () => (<CheckboxComponent />)
-    },
+    // {
+    //   id: "selection",
+    //   Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<any>) => {
+    //     console.log(getToggleAllRowsSelectedProps)
+    //     const selectedAll = getToggleAllRowsSelectedProps()
+    //     return (
+    //       <div>
+    //         <input type="checkbox" {...selectedAll} />
+    //       </div>
+    //     )
+    //   },
+    //   Cell: ({ row }: CellProps<any>) => {
+    //     const selectedRow = row.getToggleRowSelectedProps()
+    //     return (
+    //       <div>
+    //         <input type="checkbox" {...selectedRow} />
+    //       </div>
+    //     )
+    //   }
+    // },
     {
       Header: 'Keyword',
       accessor: TableItem.Keyword,
