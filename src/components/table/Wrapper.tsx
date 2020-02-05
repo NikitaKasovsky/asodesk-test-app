@@ -21,7 +21,6 @@ declare var confirm: (question: string) => boolean;
 
 export const WrapperComponent: React.FC = () => {
   const [list, setList] = useState();
-  const [item, setItems] = useState<Row[]>([])
   const [loading, setLoading] = React.useState(true);
 
   // Загружаем список
@@ -100,18 +99,21 @@ export const WrapperComponent: React.FC = () => {
       accessor: TableItem.Color,
     },
     {
-      Header: () => (<></>),
-      id: 'deleteId',
-      Cell: () => (<i className="material-icons">delete</i>)
+      Header: '',
+      id: 'delete',
+      accessor: () => 'delete',
+      Cell: (item: CellProps<any>) => (
+        <i style={{ cursor: 'pointer' }} onClick={() => {
+          const shoudRemove = confirm('Вы уверены, что хотите удалить элемент?')
+          if (shoudRemove) {
+            let data = list;
+            data.splice(item.row.id, 1);
+            setList((prev: any) => prev.filter((val: any) => val.id !== item.row.id));
+          }
+        }} className="material-icons">delete</i>
+      )
     }
   ]
-
-  const removeHandler = (id: number) => {
-    const shoudRemove = confirm('Вы уверены, что хотите удалить элемент?')
-    if (shoudRemove) {
-      setItems(prev => prev.filter((item: any) => item.id !== id))
-    }
-  }
 
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTable, usePagination, useGlobalFilter } from 'react-table';
 
 // Компоненты
@@ -7,8 +7,15 @@ import BodyComponent from './Body';
 import FooterComponent from './Footer';
 import { PaginatorComponent } from './Paginator';
 
-export default function TableComponent(props: any): JSX.Element {
+interface TableProps {
+  columns: any[],
+  data: any[],
+}
+
+export default function TableComponent(props: TableProps): JSX.Element {
   const { columns, data } = props;
+  console.log(data)
+  const [state, setState] = useState();
 
   const {
     getTableProps,
