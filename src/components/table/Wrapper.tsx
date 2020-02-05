@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Стили
 import './table.css';
@@ -9,15 +9,20 @@ import Loader from '../root/Loader';
 
 // Интерфейсы
 import { IDataStats } from '../../interfaces/data-stats.interface';
+import { Row } from 'react-table';
 
 // Перечисления
 import { TableItem } from '../../enums/table-item.enum';
+import { CheckboxComponent } from '../shared/checbox';
 
 // Адрес, с которого запрашиваем данные
-const URL = 'https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats'
+const URL = 'https://hq.asodesk.com/api/us/demo/keyword-analytics/data-stats';
+
+declare var confirm: (question: string) => boolean;
 
 export const WrapperComponent: React.FC = () => {
-  const [list, setList] = React.useState();
+  const [list, setList] = useState();
+  const [item, setItems] = useState<Row[]>([])
   const [loading, setLoading] = React.useState(true);
 
   // Загружаем список
@@ -48,17 +53,17 @@ export const WrapperComponent: React.FC = () => {
   // Колонки таблицы
   const columns = [
     {
-      Header: () => (<input type="checkbox" />),
+      Header: () => (<CheckboxComponent />),
       id: 'checkbox',
-      Cell: () => { }
+      Cell: () => (<CheckboxComponent />)
     },
     {
       Header: 'Keyword',
-      accessor: 'keyword',
+      accessor: TableItem.Keyword,
     },
     {
       Header: '',
-      accessor: 'explore',
+      accessor: TableItem.Explore,
     },
     {
       Header: '',
@@ -78,9 +83,21 @@ export const WrapperComponent: React.FC = () => {
     },
     {
       Header: 'Color',
-      accessor: 'color',
+      accessor: TableItem.Color,
     },
+    {
+      Header: () => (<></>),
+      id: 'deleteId',
+      Cell: () => (<i className="material-icons">delete</i>)
+    }
   ]
+
+  const removeHandler = (id: number) => {
+    const shoudRemove = confirm('Вы уверены, что хотите удалить элемент?')
+    if (shoudRemove) {
+      setItems(prev => prev.filter((item: any) => item.id !== id))
+    }
+  }
 
   return (
     <React.Fragment>

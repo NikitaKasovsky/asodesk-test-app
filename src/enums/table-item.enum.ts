@@ -7,4 +7,5 @@ export enum TableItem {
   PositionInfo = 'position_info',
   UsersPerDay = 'users_per_day',
   Color = 'color',
+  Keyword = 'keyword'
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, UseTableRowProps } from 'react-table';
 
+// Компоненты
 import RowComponent from './Row';
 
 interface IBodyProps {
