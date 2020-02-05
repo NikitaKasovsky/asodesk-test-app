@@ -33,7 +33,7 @@ export default function TableComponent(props: TableProps): JSX.Element {
     flatColumns,
     state: { pageIndex, pageSize, globalFilter },
   } = useTable({
-    initialState: { pageIndex: 0 },
+    initialState: { pageIndex: 0, pageSize: 10 },
     columns,
     data,
     filterTypes: {},

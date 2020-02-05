@@ -12,6 +12,7 @@ export const CheckboxComponent: React.FC = () => {
   )
 }
 
+// TODO: компонент чекбокса с логикой под getToggleAllRowsSelectedProps и getToggleRowSelectedProps 
 // import React, { useEffect } from 'react';
 // import { TableToggleAllRowsSelectedProps } from 'react-table';
 

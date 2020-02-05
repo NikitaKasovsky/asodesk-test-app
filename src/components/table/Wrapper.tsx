@@ -51,22 +51,22 @@ export const WrapperComponent: React.FC = () => {
 
   // Колонки таблицы
   const columns = [
+    // TODO: тут наткнулся на проблему
     // {
     //   id: "selection",
-    //   Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<any>) => {
-    //     console.log(getToggleAllRowsSelectedProps)
-    //     const selectedAll = getToggleAllRowsSelectedProps()
+    //   Header: (header: HeaderProps<any>) => {
+    //     console.log(typeof (header));
+    //     console.log(typeof (header.getToggleAllRowsSelectedProps))
     //     return (
     //       <div>
-    //         <input type="checkbox" {...selectedAll} />
+    //         <input type="checkbox" {...header.getToggleAllRowsSelectedProps()} />
     //       </div>
     //     )
     //   },
     //   Cell: ({ row }: CellProps<any>) => {
-    //     const selectedRow = row.getToggleRowSelectedProps()
     //     return (
     //       <div>
-    //         <input type="checkbox" {...selectedRow} />
+    //         <input type="checkbox" {...row.getToggleRowSelectedProps()} />
     //       </div>
     //     )
     //   }
